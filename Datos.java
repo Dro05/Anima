@@ -41,7 +41,7 @@ public class Datos
                 leer=new FileInputStream(nombrefichero);
                 ObjectInputStream ois = new ObjectInputStream(leer);
 
-                Object object = ois.readObject();
+                Object object = ois.readObject();//error
 
                 if (object instanceof ArrayList<?>) {
                     ArrayList<?> aList = (ArrayList<?>)object;
@@ -60,7 +60,7 @@ public class Datos
                             }
                         }
                     }else{
-                        System.out.println("El fichero esta vacio");
+                        System.out.println("No hay personajes");
                     }
                 }else{
                     System.out.println("Fichero corrupto, no se pudo leer");
