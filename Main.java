@@ -19,6 +19,9 @@ public class Main {
             personajes = datos.LeerDatos();
         }else{
             personajes = new ArrayList<>();
+            personaje=CrearPersonaje();
+            personajes.add(personaje);
+            datos.GuardarDatos(personajes);
         }
         /*
          * Menu

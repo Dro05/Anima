@@ -1,0 +1,13 @@
+Objetivo actual:
+Separar el constructor de personaje en diferentes partes
+Por lo tanto , crear una variable que permita saber en que estado esta dicha creacion de personaje
+y continuar a partir del punto en el que lo deje
+
+Ideas futuras:
+Ideal crear 2 modos iniciales, Jugador o Administrador
+-Jugador puede usar los recursos creados en el sistema
+-Administrador, puede añadir nuevos roles, atributos, ventajas... o simplemente editarlos
+
+Para las carecteristicas de ventajas
+En el menu dar en la opcion [0] la opcion de ayuda
+Esta opcion te describirá lo que hace cada ventaja 
