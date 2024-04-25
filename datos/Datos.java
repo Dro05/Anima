@@ -1,5 +1,8 @@
+package datos;
 import java.io.*;
 import java.util.ArrayList;
+
+import personaje.Personaje;
 
 public class Datos
 {
@@ -17,7 +20,7 @@ public class Datos
         this.nombrefichero=nombrefichero;
     }
 
-    boolean ExisteFichero(){
+    public boolean ExisteFichero(){
         /*
          * Comprueba que el fichero de datos existe
          */
@@ -25,7 +28,7 @@ public class Datos
         return file.exists();
     }
 
-    ArrayList<Personaje> LeerDatos(){
+    public ArrayList<Personaje> LeerDatos(){
         /*
          * Este metodo lee el fichero de datos
          * Primero comprueba que existe el fichero
@@ -81,7 +84,7 @@ public class Datos
 
     }
 
-    void GuardarDatos(ArrayList<Personaje> arrayList){
+    public void GuardarDatos(ArrayList<Personaje> arrayList){
         FileOutputStream fichero = null;
 
         try {

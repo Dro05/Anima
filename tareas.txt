@@ -1,7 +1,5 @@
 Objetivo actual:
-Separar el constructor de personaje en diferentes partes
-Por lo tanto , crear una variable que permita saber en que estado esta dicha creacion de personaje
-y continuar a partir del punto en el que lo deje
+Repasar nombres de los metodos que empiezan en mayuscula cuando deberia ser minuscula
 
 Ideas futuras:
 Ideal crear 2 modos iniciales, Jugador o Administrador

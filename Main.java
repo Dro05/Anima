@@ -1,11 +1,16 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import controlador.Controlador;
+import datos.Datos;
+import personaje.Personaje;
+
 public class Main {
     /*  Inicialmente el programa debe de buscar si existe o no el fichero de guardado de personajes
      *   si existe lo lee 
      *   si no, lo crea
      */ 
+
     static ArrayList<Personaje> personajes;
     static Personaje personaje=null;
     static Scanner teclado = new Scanner(System.in);
@@ -14,28 +19,27 @@ public class Main {
 
     public static void main (String args[]){
 
-        datos = new Datos("datos.txt");
+        iniciarDatos();
+        menuPersonaje();
+        
+    }
+    
+    static void iniciarDatos(){
+        datos = new Datos("personajes.txt");
         if (datos.ExisteFichero()){
             personajes = datos.LeerDatos();
         }else{
             personajes = new ArrayList<>();
-            personaje=CrearPersonaje();
+            Controlador.limpiaPantalla();
+            System.out.println("Oh, veo que tenemos carne fresca...");
+            System.out.println("Vamos a cogerte los datos");
+            personaje=crearPersonaje();
             personajes.add(personaje);
             datos.GuardarDatos(personajes);
         }
-        /*
-         * Menu
-         * 1-Crear Personaje
-         * 2-Elegir personaje disponible
-         * 3-Salir
-         */
-        MenuPersonaje();
-        
     }
-    static boolean Jugar(){
-        
-        
 
+    static boolean jugar(){
         int dado,resultado;
         while (true){
             System.out.print("\033[H\033[2J");
@@ -92,7 +96,7 @@ public class Main {
                 case 4://Salir
                 System.out.println("----------Saliendo-----------");
                 System.out.println("-----------------------------");
-                return MenuPersonaje();
+                return menuPersonaje();
 
                 default:
                     System.out.println("Esa opcion no existe.");
@@ -100,7 +104,7 @@ public class Main {
          }
     }
 
-    static boolean MenuPersonaje(){
+    static boolean menuPersonaje(){
         
 
         while (true){
@@ -121,20 +125,20 @@ public class Main {
 
             switch(opcion){
                 case 1:
-                personaje=CrearPersonaje();
+                personaje=crearPersonaje();
                 personajes.add(personaje);
                 datos.GuardarDatos(personajes);
-                return Jugar();
+                return jugar();
 
                 case 2:
-                if(ElegirPersonaje()){
-                    return Jugar();
+                if(elegirPersonaje()){
+                    return jugar();
                 }else{
                     break;
                 }
 
                 case 3:
-                if(EliminarPersonaje()){
+                if(eliminarPersonaje()){
                     datos.GuardarDatos(personajes);
                 }
                 break;
@@ -147,10 +151,10 @@ public class Main {
             }
          }
     }
-    static Personaje CrearPersonaje(){
+    static Personaje crearPersonaje(){
         return new Personaje();
     }
-    static boolean ElegirPersonaje(){
+    static boolean elegirPersonaje(){
         String nombre;
         for(int i =0;i<personajes.size();i++){
             nombre=personajes.get(i).getNombre();
@@ -161,12 +165,15 @@ public class Main {
         int numero = teclado.nextInt();
         if(numero<personajes.size()){
             personaje = personajes.get(numero);
+            if (personaje.getCompletado()<5) {
+                personaje.constPorPartes();
+            }
             return true;
         }else{
             return false;
         }
     }
-    static boolean EliminarPersonaje(){
+    static boolean eliminarPersonaje(){
 
         String nombre;
         for(int i =0;i<personajes.size();i++){
