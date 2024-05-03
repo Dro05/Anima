@@ -30,6 +30,22 @@ public class Personaje implements Serializable{
     //Datos extra del personaje p5
     private String resumenHistoria;
 
+    //Datos caracteristicas
+    int agilidad = 0 ,
+    constitucion = 0 ,
+    destreza = 0 ,
+    fuerza = 0 ,
+    inteligencia = 0 ,
+    percepcion = 0 ,
+    poder = 0 ,
+    voluntad = 0;
+
+    //Ventajas y desventajas
+    int pc = 3;
+
+
+
+
     //Mas cosas
     private String clase;
     private int vida;
@@ -44,6 +60,7 @@ public class Personaje implements Serializable{
 
     public Personaje(){
         constPorPartes();
+        inicializaCaracteristicas();
     }
 
     public void constPorPartes(){
@@ -111,7 +128,7 @@ public class Personaje implements Serializable{
 
         
         armas.add(new Arma("desarmado", 115, 80, 160, 20));
-        Equipar(armas.get(0));
+        equipar(armas.get(0));
 
         completado=1;
         
@@ -319,7 +336,7 @@ public class Personaje implements Serializable{
         return completado;
     }
     
-    public boolean EligeArma(){
+    public boolean eligeArma(){
         String nombre;
 
         for(int i =0;i<armas.size();i++){
@@ -335,26 +352,26 @@ public class Personaje implements Serializable{
 
         if(numero<armas.size()){
             arma = armas.get(numero);
-            Equipar(arma);
+            equipar(arma);
             return true;
         }else{
             if(numero==armas.size()){
-                return CrearArma();
+                return crearArma();
             }else{
                 return false;
             }
         }
     }
 
-    boolean CrearArma(){
+    boolean crearArma(){
         arma=new Arma();
         armas.add(arma);
-        Equipar(arma);
+        equipar(arma);
 
         return true;
     }
 
-    boolean Equipar(Arma arma){
+    boolean equipar(Arma arma){
         ataque=arma.getAtaque();
         daño=arma.getDaño();
         defensa=arma.getDefensa();
@@ -362,4 +379,105 @@ public class Personaje implements Serializable{
         return true;
     }
 
+    void inicializaCaracteristicas(){
+        Controlador.limpiaPantalla();
+        System.out.println("Ahora pongamos los puntos de habilidad al personaje ");
+        System.out.println("Tienes 2 opciones: ");
+        System.out.println("0-Repartir los 68 puntos que tienes disponibles entre las diferentes caracteristicas");
+        System.out.println("(No puedes poner menos de 1 ni mas de 10)");
+        System.out.println("1-Aleatorizar entre 1 y 10 todas las caracteristicas");
+        System.out.println("(siendo posible superar o no llegar a los 68 puntos)");
+        int opcion = teclado.nextInt();
+
+
+        switch (opcion) {
+            case 0:
+                caracteristicasElegidas();
+
+                break;
+
+            case 1:
+                caracteristicasAleatorias();
+                break;
+        
+            default:
+                break;
+        }
+    }
+    void caracteristicasElegidas(){
+        int cantidad=68;
+        do{
+            cantidad = 68;
+            System.out.println("Okey, pues tienes a gastar los 68 puntos entre: ");
+            System.out.println("agilidad, constitucion, destreza, ");
+            System.out.println("fuerza, inteligencia, percepcion, ");
+            System.out.println("poder y voluntad");
+            System.out.println("(Pulsa cualquier tecla para continuar)");
+            teclado.nextLine();
+
+            Controlador.limpiaPantalla();
+            System.out.println("Puntos disponibles: "+cantidad);
+            System.out.print("Agilidad: ");
+            agilidad = teclado.nextInt();
+            cantidad = cantidad-agilidad;
+
+            Controlador.limpiaPantalla();
+            System.out.println("Puntos disponibles: "+cantidad);
+            System.out.print("Constitucion: ");
+            constitucion = teclado.nextInt();
+            cantidad = cantidad-constitucion;
+
+            Controlador.limpiaPantalla();
+            System.out.println("Puntos disponibles: "+cantidad);
+            System.out.print("Destreza: ");
+            destreza = teclado.nextInt();
+            cantidad = cantidad-destreza;
+
+            Controlador.limpiaPantalla();
+            System.out.println("Puntos disponibles: "+cantidad);
+            System.out.print("Fuerza: ");
+            fuerza = teclado.nextInt();
+            cantidad = cantidad-fuerza;
+
+            Controlador.limpiaPantalla();
+            System.out.println("Puntos disponibles: "+cantidad);
+            System.out.print("Inteligencia: ");
+            inteligencia = teclado.nextInt();
+            cantidad = cantidad-inteligencia;
+
+            Controlador.limpiaPantalla();
+            System.out.println("Puntos disponibles: "+cantidad);
+            System.out.print("Percepcion: ");
+            percepcion = teclado.nextInt();
+            cantidad = cantidad-percepcion;
+
+            Controlador.limpiaPantalla();
+            System.out.println("Puntos disponibles: "+cantidad);
+            System.out.print("Poder: ");
+            poder = teclado.nextInt();
+            cantidad = cantidad-poder;
+
+            Controlador.limpiaPantalla();
+            System.out.println("Puntos disponibles: "+cantidad);
+            System.out.print("Voluntad: ");
+            voluntad = teclado.nextInt();
+            cantidad = cantidad-voluntad;
+
+            teclado.nextLine();
+            
+        }while(agilidad<1 || constitucion<1 || destreza<1 || fuerza<1 || 
+        inteligencia<1 || percepcion<1 || poder<1 || voluntad<1 || 
+        agilidad>10 || constitucion>10 || destreza>10 || fuerza>10 || 
+        inteligencia>10 || percepcion>10 || poder>10 || voluntad>10 || cantidad != 0);
+    }
+    void caracteristicasAleatorias(){
+        agilidad = (int)Math.random()*9+1;
+        constitucion = (int)Math.random()*9+1;
+        destreza = (int)Math.random()*9+1;
+        fuerza = (int)Math.random()*9+1;
+        inteligencia = (int)Math.random()*9+1;
+        percepcion = (int)Math.random()*9+1;
+        poder = (int)Math.random()*9+1;
+        voluntad = (int)Math.random()*9+1;
+    }
 }

@@ -1,5 +1,5 @@
 Objetivo actual:
-Repasar nombres de los metodos que empiezan en mayuscula cuando deberia ser minuscula
+Puntos de creacion
 
 Ideas futuras:
 Ideal crear 2 modos iniciales, Jugador o Administrador

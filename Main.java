@@ -26,8 +26,8 @@ public class Main {
     
     static void iniciarDatos(){
         datos = new Datos("personajes.txt");
-        if (datos.ExisteFichero()){
-            personajes = datos.LeerDatos();
+        if (datos.existeFichero()){
+            personajes = datos.leerDatos();
         }else{
             personajes = new ArrayList<>();
             Controlador.limpiaPantalla();
@@ -35,7 +35,7 @@ public class Main {
             System.out.println("Vamos a cogerte los datos");
             personaje=crearPersonaje();
             personajes.add(personaje);
-            datos.GuardarDatos(personajes);
+            datos.guardarDatos(personajes);
         }
     }
 
@@ -90,7 +90,7 @@ public class Main {
                 break;
 
                 case 3://Elige arma
-                personaje.EligeArma();
+                personaje.eligeArma();
                 break;
 
                 case 4://Salir
@@ -127,7 +127,7 @@ public class Main {
                 case 1:
                 personaje=crearPersonaje();
                 personajes.add(personaje);
-                datos.GuardarDatos(personajes);
+                datos.guardarDatos(personajes);
                 return jugar();
 
                 case 2:
@@ -139,7 +139,7 @@ public class Main {
 
                 case 3:
                 if(eliminarPersonaje()){
-                    datos.GuardarDatos(personajes);
+                    datos.guardarDatos(personajes);
                 }
                 break;
 

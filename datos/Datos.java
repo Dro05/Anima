@@ -20,7 +20,7 @@ public class Datos
         this.nombrefichero=nombrefichero;
     }
 
-    public boolean ExisteFichero(){
+    public boolean existeFichero(){
         /*
          * Comprueba que el fichero de datos existe
          */
@@ -28,7 +28,7 @@ public class Datos
         return file.exists();
     }
 
-    public ArrayList<Personaje> LeerDatos(){
+    public ArrayList<Personaje> leerDatos(){
         /*
          * Este metodo lee el fichero de datos
          * Primero comprueba que existe el fichero
@@ -37,7 +37,7 @@ public class Datos
          */
         ArrayList<Personaje> personajes = new ArrayList<>();
 
-        if (ExisteFichero()) {
+        if (existeFichero()) {
             FileInputStream leer = null;
 
             try {
@@ -84,7 +84,7 @@ public class Datos
 
     }
 
-    public void GuardarDatos(ArrayList<Personaje> arrayList){
+    public void guardarDatos(ArrayList<Personaje> arrayList){
         FileOutputStream fichero = null;
 
         try {
