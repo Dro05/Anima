@@ -1,5 +1,6 @@
 Objetivo actual:
 Puntos de creacion
+Menu de caracteristicas pds
 
 Ideas futuras:
 Ideal crear 2 modos iniciales, Jugador o Administrador

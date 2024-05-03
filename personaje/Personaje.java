@@ -49,6 +49,7 @@ public class Personaje implements Serializable{
     //Mas cosas
     private String clase;
     private int vida;
+    private int cansancio;
     private int ki;
     private ArrayList<Arma> armas=new ArrayList<>();
     private Arma arma;
